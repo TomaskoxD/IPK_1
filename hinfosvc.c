@@ -55,8 +55,8 @@ float cpu()
     pclose(cmd);
     char string_prev[10] = {0};
     char string_curr[10] = {0};
-    int numb_prev = 0;
-    int numb_curr = 0;
+    float numb_prev = 0;
+    float numb_curr = 0;
     // vypocet vyuzitia procesora
     for (int i = 1; i < 10; i++)
     {
