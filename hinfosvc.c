@@ -53,9 +53,8 @@ float cpu()
     cmd = popen("cat /proc/stat | awk '/^cpu /{flag=1}/^intr/{flag=0}flag'", "r");
     fgets(current, sizeof(current), cmd);
     pclose(cmd);
-    printf("riadky z vypisu \n%s \n%s\n", previous, current);
-    char string_prev[10] = {0};
-    char string_curr[10] = {0};
+    char string_prev[16] = {0};
+    char string_curr[16] = {0};
     int64_t numb_prev = 0;
     int64_t numb_curr = 0;
     // vypocet vyuzitia procesora
@@ -67,12 +66,10 @@ float cpu()
         numb_prev += strtoull(string_prev, &endPtr, 10);
         numb_curr += strtoull(string_curr, &endPtr, 10);
     }
-    printf("suma sumaru\nprev : %ld\ncurr : %ld\n", numb_prev, numb_curr);
     numb_curr -= numb_prev;
     getString(previous, string_prev, " ", 6);
     getString(current, string_curr, " ", 6);
     numb_prev = atoi(string_curr) - atoi(string_prev);
-    printf("delta : %ld\nidle : %ld\nvypocet : %ld / %ld\n", numb_curr, numb_prev, numb_curr - numb_prev, numb_curr);
     return 100 * (float)(numb_curr - numb_prev) / (float)numb_curr;
 }
 
