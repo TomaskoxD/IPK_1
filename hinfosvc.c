@@ -56,8 +56,8 @@ float cpu()
     printf("riadky z vypisu \n%s \n%s\n", previous, current);
     char string_prev[10] = {0};
     char string_curr[10] = {0};
-    float numb_prev = 0;
-    float numb_curr = 0;
+    long double numb_prev = 0;
+    long double numb_curr = 0;
     // vypocet vyuzitia procesora
     for (int i = 1; i < 10; i++)
     {
@@ -66,12 +66,12 @@ float cpu()
         numb_prev += atoi(string_prev);
         numb_curr += atoi(string_curr);
     }
-    printf("suma sumaru\nprev : %f\ncurr : %f\n", numb_prev, numb_curr);
+    printf("suma sumaru\nprev : %Lf\ncurr : %Lf\n", numb_prev, numb_curr);
     numb_curr -= numb_prev;
     getString(previous, string_prev, " ", 6);
     getString(current, string_curr, " ", 6);
     numb_prev = atoi(string_curr) - atoi(string_prev);
-    printf("delta : %f\nidle : %f\nvypocet : %.2f / %.2f\n", numb_curr, numb_prev, numb_curr - numb_prev, numb_curr);
+    printf("delta : %Lf\nidle : %Lf\nvypocet : %.2Lf / %.2Lf\n", numb_curr, numb_prev, numb_curr - numb_prev, numb_curr);
     return 100 * (numb_curr - numb_prev) / numb_curr;
 }
 
