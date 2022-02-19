@@ -25,9 +25,9 @@ A few examples of useful commands and/or tasks.
 ```
 $ Start the server with ./hinfosvc 'port number'
 $ Now with server up and running you can request data using http://localhost:'port number'/'data you want to recieve' or in command line by using either GET or curl http://localhost:'port number'/'data you want to recieve'
-$ You can request your hostname using http://127.0.0.1:'port number'/hostname
-$ You can request your cpu name using http://127.0.0.1:'port number'/cpu-name
-$ You can request your current system load using http://127.0.0.1:'port number'/load
+$ You can request your hostname using http://localhost:'port number'/hostname
+$ You can request your cpu name using http://localhost:'port number'/cpu-name
+$ You can request your current system load using http://localhost:'port number'/load
 
 ```
 
