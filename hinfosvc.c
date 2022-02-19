@@ -63,8 +63,9 @@ float cpu()
     {
         getString(previous, string_prev, " ", i);
         getString(current, string_curr, " ", i);
-        numb_prev += atoi(string_prev);
-        numb_curr += atoi(string_curr);
+        char *endPtr;
+        numb_prev += strtoull(string_prev, &endPtr, 10);
+        numb_curr += strtoull(string_curr, &endPtr, 10);
     }
     printf("suma sumaru\nprev : %ld\ncurr : %ld\n", numb_prev, numb_curr);
     numb_curr -= numb_prev;
