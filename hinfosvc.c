@@ -53,6 +53,7 @@ float cpu()
     cmd = popen("cat /proc/stat | awk '/^cpu /{flag=1}/^intr/{flag=0}flag'", "r");
     fgets(current, sizeof(current), cmd);
     pclose(cmd);
+    printf("riadky z vypisu \n%s \n%s\n", previous, current);
     char string_prev[10] = {0};
     char string_curr[10] = {0};
     float numb_prev = 0;
@@ -65,10 +66,12 @@ float cpu()
         numb_prev += atoi(string_prev);
         numb_curr += atoi(string_curr);
     }
+    printf("suma sumaru\nprev : %f\ncurr : %f\n", numb_prev, numb_curr);
     numb_curr -= numb_prev;
     getString(previous, string_prev, " ", 6);
     getString(current, string_curr, " ", 6);
     numb_prev = atoi(string_curr) - atoi(string_prev);
+    printf("delta : %f\nidle : %f\nvypocet : %.2f / %.2f\n", numb_curr, numb_prev, numb_curr - numb_prev, numb_curr);
     return 100 * (numb_curr - numb_prev) / numb_curr;
 }
 
