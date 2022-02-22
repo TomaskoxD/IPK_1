@@ -9,6 +9,8 @@ $(PROJ) : $(FILES)
 
 clean :
 	rm -f *.o $(PROJ)
+pack :
+	zip xondru18 Makefile hinfosvc.c Readme.md
 
 run :
 	./ifjComp 
