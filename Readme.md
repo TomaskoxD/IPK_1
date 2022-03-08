@@ -4,7 +4,7 @@ Lightweight HTTP server implemented in C
 
 ## Getting Started
 
-A server implemented in C language that communicates via the HTTP protocol, which provides various information about the system. The server listens on the specified port and returns the required information according to the url. The answer type is text / plain. Communication with the server is possible using both a web browser and tools such as wget and curl.
+A server implemented in C language that communicates via the HTTP protocol, which provides various information about the system. The server listens on the specified port and returns the required information according to the url such as hostname ,cpu name or current cpu load. The answer type is text. Communication with the server is possible using both a web browser and tools such as GET or curl.
 
 ### Prerequisites
 

@@ -1,4 +1,12 @@
-// Server side C/C++ program to demonstrate Socket programming
+/****************************************************************************
+ *   IPK                                                                    *
+ *                                                                          *
+ *   Implementacia jednoducheho htpp servera                                *
+ *                                                                          *
+ *	 Ondrušek Tomáš	xondru18                                                *
+ *                                                                          *
+ ****************************************************************************/
+
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/socket.h>
