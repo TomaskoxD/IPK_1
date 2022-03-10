@@ -13,6 +13,14 @@
 #include <netinet/in.h>
 #include <stdlib.h>
 #include <string.h>
+/**
+ * Function separates string requested by getString function
+ * @param string string to be trimmed
+ * @param subString space for returned string
+ * @param from number of character to start trimming from
+ * @param length length of string
+ * @return void
+ */
 void subString(char string[], char subString[], int from, int length)
 {
     int c = 0;
@@ -25,6 +33,14 @@ void subString(char string[], char subString[], int from, int length)
     subString[c] = '\0'; // ukoncujem string znakom \0
     return;              // vraciam vsetky hodnoty, moj substring je ulozeny v char subString[]
 }
+/**
+ * Function separates string into muntile strings based on delimeter and get number
+ * @param array string to be trimmed
+ * @param result space for returned string
+ * @param delimeter string of delimeters
+ * @param get number of 'column' to be separated
+ * @return void
+ */
 void getString(char *array, char *result, char *delimeter, int get)
 {
     int stringLength = strlen(array);
@@ -50,6 +66,10 @@ void getString(char *array, char *result, char *delimeter, int get)
         return;
     }
 }
+/**
+ * Function calculates CPU usage from /proc/stat and
+ * @return float cpu usage
+ */
 float cpu()
 {
     char previous[1024], current[1024] = {0};
@@ -78,18 +98,35 @@ float cpu()
     numb_prev = atoi(string_curr) - atoi(string_prev);
     return 100 * (float)(numb_curr - numb_prev) / (float)numb_curr;
 }
-
+/**
+ * Fills up struct of address
+ * @param address struct address
+ * @param port port number
+ * @return void
+ */
 void fillStruct(struct sockaddr_in *address, int port)
 {
     address->sin_family = AF_INET;
     address->sin_addr.s_addr = INADDR_ANY;
     address->sin_port = htons(port);
 }
+/**
+ * Fills HTTP response start with correct protocol and response style
+ * @param msg string to be filled and returned by function
+ * @param result result string to be added at the end
+ * @return void
+ */
 void fillOk(char *msg, char *result)
 {
     strcpy(msg, "HTTP/1.1 200 OK\r\nContent-Type: text/plain;\r\n\r\n");
     strcat(msg, result);
 }
+/**
+ * Sends client a response based on his request
+ * @param info request parameter recieved from user, trimmed
+ * @param new_socket fd of socket
+ * @return void
+ */
 void sendResponse(char *info, int new_socket)
 {
     char result[1024], msg[1024] = {0};
@@ -132,9 +169,9 @@ int main(int argc, char const *argv[])
         fprintf(stderr, "Argument error");
         return (EXIT_FAILURE);
     }
-    int port = atoi(argv[1]);
+    int port = atoi(argv[1]); // ziskanie portu z parametrov volania programu
     int server_fd, new_socket, valread;
-    struct sockaddr_in address;
+    struct sockaddr_in address; // struktira socket adresy
     int opt = 1;
     int addrlen = sizeof(address);
     char buffer[1024], info[1024];
@@ -170,9 +207,9 @@ int main(int argc, char const *argv[])
         }
         valread = read(new_socket, buffer, 1024);
         printf("%s", buffer);
-        getString(buffer, info, "/", 2); // ziskanie parametrov z URL
-        getString(info, info, " ", 1);
-        sendResponse(info, new_socket);
+        getString(buffer, info, "/", 2); // ziskanie parametrov z URL -> GET /xxxxx HTTP/1.1 ziskam xxxxx HTTP
+        getString(info, info, " ", 1);   // z  xxxxx HTTP z9skam xxxxxx
+        sendResponse(info, new_socket);  // volam funkciu na zaslanie odozvy klientovi
     }
     return 0;
 }
